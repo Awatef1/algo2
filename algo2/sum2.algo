@@ -1,0 +1,63 @@
+ALGORITHM sum2
+VAR
+    List :  STRUCT
+                data : INTEGER;
+                next : ^List;
+            END_STRUCT
+    first1 : ^List := NULL;
+    first2 : ^List := NULL;
+    p, q : ^List;
+    n : INTEGER :=10;
+    m : INTEGER :=5;
+    i,x, sum :  INTEGER;
+    
+BEGIN
+
+    Write("reading first set:");
+    FOR i FROM 1 TO n DO
+        Read(x);
+        p := create(List);
+        p^.data := x;
+        p^.next := first1;
+        first1 := p;         
+    END_FOR
+
+    Write("reading second set:");
+    FOR i FROM 1 TO m DO
+        Read(x);
+        q := create(List);
+        q^.data := x;
+        q^.next := first2;
+        first2 := q;         
+    END_FOR
+
+    p:= first1;
+    sum:=0;
+    WHILE (p<>NULL) DO
+        q:=first2;
+        WHILE (q<>NULL AND p^.data<> q^.data) DO
+            q:=q^.next;
+        END_WHILE
+        IF (q:=null) THEN
+            sum:= sum + p^.data;
+        END_IF
+        p:=p^.next;
+    END_WHILE
+
+    q:= first2;
+    WHILE (q<>NULL) DO
+        p:=first1;
+        WHILE(p<>NULL AND q^.data <> p^.data) DO
+             p:=p^.next;
+        END_WHILE
+        IF (p:=NULL) THEN
+            sum := sum + q^.data;
+        END_IF
+        q:=q^.next;  
+    END_WHILE
+    
+    Write("sum=",sum);
+
+
+   
+END

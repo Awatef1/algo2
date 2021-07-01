@@ -1,0 +1,51 @@
+ALGORITHM sum1
+VAR
+tab1: ARRAY_OF INTEGER[10];
+tab2 : ARRAY_OF INTEGER[5];
+i, j,  n, p : INTEGER;
+sum: INTEGER;
+exist:BOOLEAN;
+
+BEGIN
+
+    Write("reading first table:");
+    n:=10;
+    FOR i FROM 0 TO n-1 DO
+        Write("tab1[",i,"]=");
+        Read(tab1[i]);
+    END_FOR 
+
+    Write("reading second table:");
+    p:=5;
+    FOR j FROM 0 TO p-1 DO
+        Write("tab2[",j,"]=");
+        Read(tab2[j]);
+    END_FOR
+
+    sum:=0; 
+    FOR i FROM 0 TO n-1 DO
+        exist:=false; j:=0;
+        WHILE (j<p and exist=false) DO
+            IF (tab1[i]=tab2[j]) THEN
+                exist:=true;
+            END_IF
+        END_WHILE
+        IF (exist=false) THEN
+            sum:=sum+tab1[i];
+        END_IF
+    END_FOR
+    
+    FOR J FROM O TO P-1 DO
+        exist=false; i:=0;
+        WHILE (i<n and exist=false) DO
+            IF (tab2[j]=tab1[i])THEN
+                exist:=true;
+            END_IF
+        END_WHILE
+        IF (exist=false) THEN
+            sum:= sum+tab2[j];
+        END_IF
+    END_FOR
+    Write("sum = ",sum);
+END
+
